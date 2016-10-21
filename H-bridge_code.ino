@@ -46,7 +46,7 @@ void loop() {
 
   
   digitalWrite(T1pin, HIGH);   // PWM to T1 transistor
-  digitalWrite(T2pin, LOW);   // PWM to T1 transistor
+  digitalWrite(T2pin, LOW);   // PWM to T2 transistor
 
 analogWriteResolution(12);
    
@@ -56,12 +56,12 @@ analogWriteResolution(12);
     delayMicroseconds(19);
   }
   
-  digitalWrite(DAC0, LOW);   // PWM to T1 transistor
-  digitalWrite(DAC1, LOW);   // PWM to T1 transistor
+  digitalWrite(DAC0, LOW);   // PWM to T3 transistor
+  digitalWrite(DAC1, LOW);   // PWM to T4 transistor
 
 
-  digitalWrite(T1pin, LOW);   // PWM to T1 transistor
-  digitalWrite(T2pin, HIGH);   // PWM to T1 transistor
+  digitalWrite(T1pin, LOW);   // PWM to T1  transistor
+  digitalWrite(T2pin, HIGH);   // PWM to T2 transistor
 
 analogWriteResolution(12);
    
@@ -71,67 +71,12 @@ analogWriteResolution(12);
   }
 
   digitalWrite(T1pin, LOW);   // PWM to T1 transistor
-  digitalWrite(T2pin, LOW);   // PWM to T1 transistor
+  digitalWrite(T2pin, LOW);   // PWM to T2 transistor
 
-  digitalWrite(DAC0, LOW);   // PWM to T1 transistor
-  digitalWrite(DAC1, LOW);   // PWM to T1 transistor
+  digitalWrite(DAC0, LOW);   // PWM to T3 transistor
+  digitalWrite(DAC1, LOW);   // PWM to T4 transistor
 
  delay(90); // specify time to delay until the next pulse based on frequency of biphasic pulses
 }
-
-/*
-// Method 2 of producing biphasic pulse. This method uses the analogwrite function to write sinewave to DAC pins.  
-// the setup routine runs once when you press reset:
-void setup() 
-{ 
-
-  Serial.begin(9600); // setup serial
-
-  // For the positive pulse
-  // T1 is high and T4 is high
-  pinMode(T1pin, OUTPUT);      // sets the digital pin as output
-  pinMode(T2pin, OUTPUT);      // sets the digital pin as output
-
-
-  // Initialize DAC pins 
-  pinMode(DAC0, OUTPUT);   // initialize DAC pin as an output to transistor T4.
-  pinMode(DAC1, OUTPUT);   // initialize DAC pin as an output to transistor T3.   
-}
-
-void loop() {
-
-  pinMode(DAC0, OUTPUT);   // initialize DAC pin as an output to transistor T4.
-  
-  // put your main code here, to run repeatedly:
-  digitalWrite(T1pin, HIGH);   // PWM to T1 transistor
-
-  // Sine wave into T4
-  for(int i = 0; i<50;i++){
-
-    analogWriteResolution(12); // Sets the analogwrite resolutions to 12-bit
-    analogWrite(DAC0, sine[i]); // write to DAC0 pin
-    delayMicroseconds(19); // delay by 19 microseconds
-
-  }
-  pinMode(DAC0, INPUT);   // initialize DAC pin as an input to turn it off
-  digitalWrite(T1pin, LOW);   // Turn off PWM to T1 transistor
-
-  // Second stage: Activating T2 and T3 transistors
-  delayMicroseconds(2); // interpulse interval
-  
-  digitalWrite(T2pin, HIGH);   // PWM to T2 transistor
-  
-  // Sine wave into T3 transistor
-  for(int i = 0; i<50;i++){
-
-    analogWriteResolution(12); // Sets the analogwrite resolutions to 12-bit
-    analogWrite(DAC1, sine[i]); // write to DAC1 pin
-    delayMicroseconds(19);      // delay by 19 microseconds
-
-  }
-  pinMode(DAC1, INPUT);   // turn off DAC1 pin
-  digitalWrite(T2pin, LOW);   // turn off PWM to T2 transistor
-}
-
 
 
